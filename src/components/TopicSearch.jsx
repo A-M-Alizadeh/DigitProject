@@ -22,7 +22,11 @@ function TopicSearch({ initialTopic, onSubmit }) {
           onChange={(event) => setValue(event.target.value)}
           placeholder="Topic"
         />
-        <button className="topic-search-icon" type="submit" aria-label="Search topic">
+        <button
+          className="topic-search-icon"
+          type="submit"
+          aria-label="Search topic"
+        >
           🔍
         </button>
       </div>

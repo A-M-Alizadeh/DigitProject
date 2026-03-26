@@ -9,7 +9,8 @@ import { usePexelsPhotos } from './hooks/usePexelsPhotos'
 function App() {
   const [topic, setTopic] = useState('nature')
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const { photos, loading, error } = usePexelsPhotos(topic)
+  const { photos, loading, loadingMore, error, hasMore, loadMore } =
+    usePexelsPhotos(topic)
   const safeIndex = Math.min(selectedIndex, Math.max(photos.length - 1, 0))
   const selectedPhoto = photos[safeIndex]
 
@@ -33,6 +34,9 @@ function App() {
             items={photos}
             selectedIndex={safeIndex}
             onSelect={setSelectedIndex}
+            onLoadMore={loadMore}
+            canLoadMore={hasMore}
+            loadingMore={loadingMore}
             topContent={
               <TopicSearch initialTopic={topic} onSubmit={handleTopicSubmit} />
             }
@@ -44,6 +48,9 @@ function App() {
               items={photos}
               selectedIndex={safeIndex}
               onSelect={setSelectedIndex}
+              onLoadMore={loadMore}
+              canLoadMore={hasMore}
+              loadingMore={loadingMore}
             />
           </section>
         </section>

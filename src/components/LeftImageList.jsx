@@ -1,7 +1,15 @@
 import { useEffect, useRef } from 'react'
 import PanelText from './PanelText'
 
-function LeftImageList({ items, selectedIndex, onSelect, topContent }) {
+function LeftImageList({
+  items,
+  selectedIndex,
+  onSelect,
+  topContent,
+  onLoadMore,
+  canLoadMore,
+  loadingMore,
+}) {
   const itemRefs = useRef([])
 
   useEffect(() => {
@@ -22,7 +30,7 @@ function LeftImageList({ items, selectedIndex, onSelect, topContent }) {
 
       {items.map((item, index) => (
         <button
-          key={item.id}
+          key={`${item.id}-${index}`}
           className={`left-item ${selectedIndex === index ? 'is-active' : ''}`}
           type="button"
           onClick={() => onSelect(index)}
@@ -33,6 +41,17 @@ function LeftImageList({ items, selectedIndex, onSelect, topContent }) {
           <PanelText>{item.title}</PanelText>
         </button>
       ))}
+
+      {canLoadMore ? (
+        <button
+          className="list-load-more"
+          type="button"
+          onClick={onLoadMore}
+          disabled={loadingMore}
+        >
+          {loadingMore ? 'Loading...' : 'Load more'}
+        </button>
+      ) : null}
     </aside>
   )
 }

@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import LeftImageList from './components/LeftImageList'
 import MainPreview from './components/MainPreview'
 import ThumbnailStrip from './components/ThumbnailStrip'
+import TopicSearch from './components/TopicSearch'
 import { usePexelsPhotos } from './hooks/usePexelsPhotos'
 
 function App() {
-  const topic = 'nature'
+  const [topic, setTopic] = useState('nature')
   const [selectedIndex, setSelectedIndex] = useState(0)
   const { photos, loading, error } = usePexelsPhotos(topic)
-  const selectedPhoto = photos[selectedIndex]
+  const safeIndex = Math.min(selectedIndex, Math.max(photos.length - 1, 0))
+  const selectedPhoto = photos[safeIndex]
 
-  useEffect(() => {
+  const handleTopicSubmit = (nextTopic) => {
+    setTopic(nextTopic)
     setSelectedIndex(0)
-  }, [photos])
+  }
 
   return (
     <main className="gallery-page">
@@ -28,15 +31,18 @@ function App() {
         <section className="gallery-content">
           <LeftImageList
             items={photos}
-            selectedIndex={selectedIndex}
+            selectedIndex={safeIndex}
             onSelect={setSelectedIndex}
+            topContent={
+              <TopicSearch initialTopic={topic} onSubmit={handleTopicSubmit} />
+            }
           />
 
           <section className="right-panel">
             <MainPreview item={selectedPhoto} />
             <ThumbnailStrip
               items={photos}
-              selectedIndex={selectedIndex}
+              selectedIndex={safeIndex}
               onSelect={setSelectedIndex}
             />
           </section>

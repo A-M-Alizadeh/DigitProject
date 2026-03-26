@@ -6,6 +6,41 @@
   padding: 16px;
 }
 
+.topic-search {
+  width: 100%;
+}
+
+.topic-search-field {
+  position: relative;
+}
+
+.topic-search input {
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  padding: 8px 36px 8px 10px;
+  background: #374151;
+  color: #fff;
+  width: 100%;
+}
+
+.topic-search input::placeholder {
+  color: #d1d5db;
+}
+
+.topic-search-icon {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 2px 4px;
+}
+
 .status-text {
   margin: 0;
   font-size: 14px;
@@ -28,6 +63,14 @@
   max-height: calc(100vh - 32px);
   overflow-y: auto;
   background: #fff;
+}
+
+.left-sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  padding-bottom: 8px;
 }
 
 .left-item {

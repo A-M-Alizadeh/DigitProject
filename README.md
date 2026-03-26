@@ -2,6 +2,10 @@
 
 Simple React gallery app using the Pexels API.
 
+## Live Demo
+
+https://a-m-alizadeh.github.io/DigitProject/
+
 ## Run
 
 1. Create `.env` in the project root:
